@@ -1,0 +1,11 @@
+1. Image process to pixelated
+2. Image process of all characters
+3. Go through each pixel in pixelated by passing in the segmented/subset of image
+4. Each pixel gets compared to each character and produce a value from 0 to 1.
+    - All different types of comparators
+5. Pick the highest with the similiarity
+    - Find the highest compare score during the compare procedure
+    - Sort after finding all compare scores
+        - Might be able to do something with this later. Like also figure out how it matches with the surronding squares
+6. Pick character for each pixel
+7. Draw image with said pixel

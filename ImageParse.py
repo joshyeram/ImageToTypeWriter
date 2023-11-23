@@ -15,8 +15,20 @@ def pixelateImage(image, dw, dh):
     return output
 
 def thresholdImage(image,t1,t2):
-    _, t = cv2.threshold(image,t1,t2,cv2.THRESH_BINARY_INV)
+    _, t = cv2.threshold(image,t1,t2,cv2.THRESH_BINARY)
     return t
 
+def resizeImageScale(image, scale):
+    height, width = image.shape[:2]
+    dw = width * scale
+    dh = height * scale
+    resize = cv2.resize(image, (dw, dh), interpolation=cv2.INTER_LINEAR)
+    return resize
 
+def resizeImage(image, w, h):
+    height, width = image.shape[:2]
+    dw = width - (width % w)
+    dh = height - (height % h)
+    resize = cv2.resize(image, (dw, dh), interpolation=cv2.INTER_LINEAR)
+    return resize
 

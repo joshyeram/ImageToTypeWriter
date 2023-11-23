@@ -9,21 +9,21 @@ String = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h I 
 
 def createCharacterImage(s, fs):
     width = fs * 100
-    height = fs + 3
+    height = int(fs + fs/10)
     img = Image.new(mode="RGB", size=(width,height), color='white')
     font = ImageFont.truetype('Courier', fs)
     draw = ImageDraw.Draw(img)
-    draw.text((2, 2), s, font=font, fill="black")
+    draw.text((1, 2), s, font=font, fill="black")
     img.save("characters.png")
 
-def parseImageCharacters(s, path):
+def parseImageCharacters(s, fs, path):
     image = Image.open(path)
     x = 0
     for c in s:
         if c == " ":
-            x += 18
+            x += int(fs * .6)
             continue
-        cr = (x, 0, x + 22, 33)
+        cr = (x, 0, x + int(fs * (2/3)), int(fs * (1.1)))
         cC = image.crop(cr)
         #. \' \" @ # $ % ^ & * ( ) _ + - =
         if c == ".":
@@ -52,7 +52,7 @@ def parseImageCharacters(s, path):
             fileName = "/Users/joshchung/Projects/ImageToTypeWriter/characters/" + c + '.png'
         with open(fileName, 'wb') as f:
             cC.save(f)
-        x += 18
+        x += int(fs * .6)
 
 def imageToNumpyArrays():
     arrs = []
@@ -65,6 +65,6 @@ def imageToNumpyArrays():
             arrs.append((gray, name))
     return arrs
 
-#createCharacterImage(String, 30)
-#parseImageCharacters(String, 'characters.png')
+createCharacterImage(String, 30)
+parseImageCharacters(String, 30, 'characters.png')
 print(imageToNumpyArrays())
